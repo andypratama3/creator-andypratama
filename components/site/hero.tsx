@@ -1,11 +1,11 @@
 import { socialLinks } from "@/lib/seo"
-import Image from "next/image"
 import { ArrowRight, Play, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { creator } from "@/lib/creator-data"
 import { InstagramIcon, TikTokIcon, YouTubeIcon } from "./icons"
 import { Reveal } from "./reveal"
 import { StaggerWords } from "./stagger-words"
+import { HeroCarousel } from "./hero-carousel"
 
 const proof = [
   { key: "tiktok" as const, Icon: TikTokIcon },
@@ -121,18 +121,7 @@ export function Hero() {
               className="absolute inset-0 rotate-3 rounded-[2rem] border border-hairline bg-brand-soft"
             />
             <div className="plate relative h-full w-full overflow-hidden rounded-[2rem]">
-              <Image
-                src="/creator-portrait.jpg"
-                alt={`${creator.name}, ${creator.role} in Jakarta`}
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 40vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"
-              />
+              <HeroCarousel />
             </div>
 
             <div className="glass absolute -left-3 top-10 flex items-center gap-2.5 rounded-2xl border border-hairline px-3.5 py-2.5 shadow-lift animate-float">
