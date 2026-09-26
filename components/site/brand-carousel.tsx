@@ -13,11 +13,8 @@ export function BrandCarousel() {
 
   const safeIndex = Math.min(index, maxIndex)
 
-  // maxIndex never changes for this dataset; suppressing lint noise.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const next = useCallback(() => setIndex((i) => Math.min(i + 1, maxIndex)), [maxIndex])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const prev = useCallback(() => setIndex((i) => Math.max(i - 1, 0)), [maxIndex])
+  const next = useCallback(() => setIndex((i) => Math.min(i + 1, maxIndex)), [])
+  const prev = useCallback(() => setIndex((i) => Math.max(i - 1, 0)), [])
 
   useEffect(() => {
     timer.current = setInterval(next, 4000)
