@@ -1,5 +1,6 @@
 import { ArrowUpRight, Check } from "lucide-react"
-import { brands, caseStudy } from "@/lib/creator-data"
+import { caseStudy } from "@/lib/creator-data"
+import { BrandCarousel } from "./brand-carousel"
 import { Reveal } from "./reveal"
 import { SectionHeading } from "./section-heading"
 
@@ -13,23 +14,7 @@ export function Brands() {
           description="Trusted by teams that care about authentic content and real results."
         />
 
-        <ul className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-hairline bg-hairline sm:grid-cols-3">
-          {brands.map((b, i) => (
-            <li key={b.name} className="bg-surface">
-              <Reveal delay={(i % 3) * 50} className="h-full">
-                <div className="group flex h-full flex-col justify-between gap-6 p-6 transition-colors duration-500 hover:bg-surface-2 sm:p-7">
-                  <span className="text-lg font-semibold tracking-tight">{b.name}</span>
-                  <div>
-                    <p className="text-xs text-ink-subtle">{b.campaign}</p>
-                    <p data-numeric className="mt-1 text-sm font-medium text-brand">
-                      {b.result}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+        <BrandCarousel />
 
         <Reveal className="mt-6">
           <article className="ring-gradient glow-top relative overflow-hidden rounded-[2rem]">
