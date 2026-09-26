@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowUpRight, Download, Mail, MapPin } from "lucide-react"
+import { socialLinks } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import {
   audience,
@@ -136,7 +137,7 @@ export default function MediaKitPage() {
                   return (
                     <li key={k}>
                       <a
-                        href={creator.links[k]}
+                        href={socialLinks[k]}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-3.5 py-1.5 text-sm transition-colors hover:border-brand hover:text-brand"

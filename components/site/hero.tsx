@@ -1,9 +1,11 @@
+import { socialLinks } from "@/lib/seo"
 import Image from "next/image"
 import { ArrowRight, Play, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { creator } from "@/lib/creator-data"
 import { InstagramIcon, TikTokIcon, YouTubeIcon } from "./icons"
 import { Reveal } from "./reveal"
+import { StaggerWords } from "./stagger-words"
 
 const proof = [
   { key: "tiktok" as const, Icon: TikTokIcon },
@@ -31,8 +33,12 @@ export function Hero() {
 
           <Reveal delay={80}>
             <h1 className="mt-7 max-w-[16ch] text-balance text-[clamp(2.6rem,7.4vw,5.75rem)] leading-[0.94] font-semibold tracking-[-0.035em]">
-              Content that connects.{" "}
-              <span className="text-gradient">Products that convert.</span>
+              <StaggerWords
+                segments={[
+                  { text: "Content that connects." },
+                  { text: "Products that convert.", className: "text-gradient" },
+                ]}
+              />
             </h1>
           </Reveal>
 
@@ -90,7 +96,7 @@ export function Hero() {
               {proof.map(({ key, Icon }) => (
                 <li key={key}>
                   <a
-                    href={creator.links[key]}
+                    href={socialLinks[key]}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 text-sm text-ink-subtle transition-colors hover:text-ink"

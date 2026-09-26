@@ -1,6 +1,7 @@
 "use client"
 
 import { Loader2, Mail, MapPin, Send } from "lucide-react"
+import { socialLinks } from "@/lib/seo"
 import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
@@ -141,7 +142,7 @@ export function Contact() {
                       return (
                         <a
                           key={k}
-                          href={creator.links[k]}
+                          href={socialLinks[k]}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${creator.name} on ${k}`}
