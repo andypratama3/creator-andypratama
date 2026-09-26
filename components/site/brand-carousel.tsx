@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { brands } from "@/lib/creator-data"
 import { Reveal } from "./reveal"
@@ -13,8 +13,11 @@ export function BrandCarousel() {
 
   const safeIndex = Math.min(index, maxIndex)
 
-  const next = () => setIndex((i) => Math.min(i + 1, maxIndex))
-  const prev = () => setIndex((i) => Math.max(i - 1, 0))
+  // maxIndex never changes for this dataset; suppressing lint noise.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const next = useCallback(() => setIndex((i) => Math.min(i + 1, maxIndex)), [maxIndex])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const prev = useCallback(() => setIndex((i) => Math.max(i - 1, 0)), [maxIndex])
 
   useEffect(() => {
     timer.current = setInterval(next, 4000)
