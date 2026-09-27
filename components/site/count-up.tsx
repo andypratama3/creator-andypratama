@@ -29,23 +29,24 @@ export function CountUp({
   const valueRef = useRef<HTMLSpanElement>(null)
   const prefersReduced = usePrefersReducedMotion()
   const places = decimals ?? (Number.isInteger(to) ? 0 : 1)
-  const placesRef = useRef(places)
 
   useEffect(() => {
     const el = valueRef.current
     if (!el) return
 
     if (prefersReduced) {
-      el.textContent = format(to, placesRef.current)
+      el.textContent = format(to, places)
       return
     }
-
-    el.textContent = format(0, placesRef.current)
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return
         io.disconnect()
+
+        // Reset to zero only once the number is about to animate, so the server-rendered
+        // value stays visible in the meantime.
+        el.textContent = format(0, places)
 
         const start = performance.now()
         const step = (now: number) => {
@@ -53,7 +54,7 @@ export function CountUp({
           const value = to * easeOutQuart(progress)
           // Written straight to the DOM. Driving this through state would re-render the
           // component on every frame and thrash layout as the digit width changes.
-          el.textContent = format(progress === 1 ? to : value, placesRef.current)
+          el.textContent = format(progress === 1 ? to : value, places)
           if (progress < 1) requestAnimationFrame(step)
         }
         requestAnimationFrame(step)
@@ -63,12 +64,14 @@ export function CountUp({
 
     io.observe(el)
     return () => io.disconnect()
-  }, [to, duration, prefersReduced])
+  }, [to, duration, places, prefersReduced])
 
   return (
     <span data-numeric>
       {prefix}
-      <span ref={valueRef}>{format(0, places)}</span>
+      {/* The real figure is what ships to the server, so crawlers and no-JS visitors
+          never see a placeholder zero. */}
+      <span ref={valueRef}>{format(to, places)}</span>
       {suffix}
     </span>
   )

@@ -12,8 +12,8 @@ const valid = {
   name: "Sarah Lim",
   email: "sarah@brand.co",
   brand: "Northwind",
-  projectType: "UGC",
-  message: "We need three vertical videos for a Q4 launch.",
+  projectType: "Web Development",
+  message: "We need a web application for our Q4 launch.",
   consent: true,
 }
 

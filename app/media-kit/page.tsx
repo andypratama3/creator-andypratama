@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, ArrowUpRight, Download, Mail, MapPin } from "lucide-react"
+import { ArrowLeft, ArrowUpRight, Mail, MapPin } from "lucide-react"
 import { socialLinks } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,6 +9,7 @@ import {
   brandNames,
   creator,
   faqPageUrl,
+  genderTones,
   packages,
   platformStats,
 } from "@/lib/creator-data"
@@ -132,8 +133,9 @@ export default function MediaKitPage() {
               </div>
 
               <ul className="flex shrink-0 flex-col gap-2">
-                {(["tiktok", "instagram", "youtube"] as SocialKey[]).map((k) => {
+                {(["github", "linkedin", "instagram", "twitter"] as SocialKey[]).map((k) => {
                   const Icon = socialIcon[k]
+                  if (!Icon) return null
                   return (
                     <li key={k}>
                       <a
@@ -207,7 +209,7 @@ export default function MediaKitPage() {
                 {audience.gender.map((g, i) => (
                   <span
                     key={g.label}
-                    className={["bg-brand", "bg-brand-3", "bg-surface-3"][i]}
+                    className={genderTones[i % genderTones.length]}
                     style={{ width: `${g.value}%` }}
                   />
                 ))}
@@ -216,7 +218,7 @@ export default function MediaKitPage() {
                 {audience.gender.map((g, i) => (
                   <li key={g.label} className="flex items-center gap-2 text-sm text-ink-muted">
                     <span
-                      className={`size-2 rounded-full ${["bg-brand", "bg-brand-3", "bg-surface-3"][i]}`}
+                      className={`size-2 rounded-full ${genderTones[i % genderTones.length]}`}
                       aria-hidden="true"
                     />
                     <span data-numeric className="font-medium text-ink">
@@ -332,7 +334,7 @@ export default function MediaKitPage() {
                   nativeButton={false}
                   render={<Link href="/#contact" />}
                 >
-                  <Download className="size-4" />
+                  <Mail className="size-4" />
                   Send a brief
                 </Button>
               </div>

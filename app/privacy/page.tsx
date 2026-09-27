@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { creator } from "@/lib/creator-data"
-import { pageMetadata } from "@/lib/seo"
+import { contentUpdated, formatRevisionDate, pageMetadata } from "@/lib/seo"
 import { Bullets, Clause, PageShell } from "@/components/site/page-shell"
 
 const DESCRIPTION = `How ${creator.name} collects, uses and protects your personal data.`
@@ -12,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/privacy",
 })
 
-const UPDATED = "1 September 2026"
+const UPDATED = formatRevisionDate(contentUpdated.privacy)
 
 export default function PrivacyPage() {
   return (
@@ -45,22 +44,16 @@ export default function PrivacyPage() {
 
       <Clause heading="Why I collect it">
         <p>
-          To reply to your enquiry and, if we work together, to deliver the campaign and report on
-          its results. That is legitimate interest under GDPR and equivalent frameworks — I need
+          To reply to your enquiry and, if we work together, to deliver the project and provide
+          ongoing support. That is legitimate interest under GDPR and equivalent frameworks — I need
           your details to answer you.
-        </p>
-        <p>
-          Where a campaign involves affiliate links, I also record which link you clicked, so
-          conversions can be attributed to the right partner and you are not credited for someone
-          else&apos;s sale.
         </p>
       </Clause>
 
       <Clause heading="How long I keep it">
         <p>
           Enquiries that do not become projects are deleted within 12 months. Project records are
-          kept for 24 months after delivery, which covers the tax and reporting window. Affiliate
-          click data is kept in aggregate.
+          kept for 24 months after delivery, which covers the support and maintenance window.
         </p>
       </Clause>
 
@@ -71,17 +64,16 @@ export default function PrivacyPage() {
           it for its own purposes.
         </p>
         <p>
-          If a campaign partner needs contact details (for example, an agency handling payment), I
+          If a project partner needs contact details (for example, a client handling payment), I
           share only what is necessary to deliver the work and I will tell you when I do.
         </p>
       </Clause>
 
-      <Clause heading="Affiliate links">
+      <Clause heading="External links">
         <p>
-          Some links on this site are affiliate links. When you click one, the merchant may place a
-          cookie to credit the referral. I may earn a commission at no extra cost to you. This
-          never changes which products I recommend — see my{" "}
-          <Link href="/#picks">product recommendations</Link> for how I choose.
+          This site may contain links to external websites and resources. I am not responsible for
+          the privacy practices of these external sites. Please review their privacy policies
+          before providing personal information.
         </p>
       </Clause>
 

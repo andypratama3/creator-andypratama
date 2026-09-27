@@ -1,58 +1,57 @@
-import { socialLinks } from "@/lib/seo"
 import { ArrowRight, Play, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { creator } from "@/lib/creator-data"
-import { InstagramIcon, TikTokIcon, YouTubeIcon } from "./icons"
+import { GitHubIcon, LinkedInIcon, InstagramIcon, WebIcon } from "./icons"
 import { Reveal } from "./reveal"
 import { StaggerWords } from "./stagger-words"
 import { HeroCarousel } from "./hero-carousel"
 
 const proof = [
-  { key: "tiktok" as const, Icon: TikTokIcon },
-  { key: "instagram" as const, Icon: InstagramIcon },
-  { key: "youtube" as const, Icon: YouTubeIcon },
+  { key: "github" as const, Icon: GitHubIcon, label: "GitHub" },
+  { key: "linkedin" as const, Icon: LinkedInIcon, label: "LinkedIn" },
+  { key: "instagram" as const, Icon: InstagramIcon, label: "Instagram" },
 ]
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-4 pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section id="top" className="relative overflow-hidden px-4 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32">
       <div aria-hidden="true" className="mesh pointer-events-none absolute inset-0 -z-20 opacity-90" />
       <div aria-hidden="true" className="grid-lines pointer-events-none absolute inset-0 -z-10" />
 
-      <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
-        <div>
+      <div className="shell relative grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+        <div className="order-2 lg:order-1">
           <Reveal>
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-hairline bg-surface/70 py-1.5 pr-4 pl-2 text-[11px] font-medium tracking-[0.18em] text-ink-muted uppercase backdrop-blur">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-hairline bg-surface/70 py-1.5 pr-4 pl-2 text-[11px] font-medium tracking-[0.18em] text-ink-muted uppercase backdrop-blur">
               <span className="relative flex size-4 items-center justify-center">
                 <span className="absolute size-1.5 rounded-full bg-ok animate-ring" />
                 <span className="size-1.5 rounded-full bg-ok" />
               </span>
               {creator.availability}
-            </span>
+            </div>
           </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="mt-7 max-w-[16ch] text-balance text-[clamp(2.6rem,7.4vw,5.75rem)] leading-[0.94] font-semibold tracking-[-0.035em]">
+          <Reveal delay={60}>
+            <h1 className="mt-6 max-w-[18ch] text-balance text-[clamp(2.8rem,8vw,6rem)] leading-[0.92] font-semibold tracking-[-0.04em]">
               <StaggerWords
                 segments={[
-                  { text: "Content that connects." },
-                  { text: "Products that convert.", className: "text-gradient" },
+                  { text: "Building digital" },
+                  { text: "experiences that matter.", className: "text-gradient" },
                 ]}
               />
             </h1>
           </Reveal>
 
-          <Reveal delay={160}>
-            <p className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-ink-muted">
+          <Reveal delay={120}>
+            <p className="mt-6 max-w-xl text-pretty text-xl leading-relaxed text-ink-muted font-light">
               {creator.intro}
             </p>
           </Reveal>
 
-          <Reveal delay={240}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+          <Reveal delay={180}>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button
                 size="lg"
-                className="group h-11 rounded-full px-6 text-[15px]"
+                className="group h-12 rounded-full px-8 text-[16px] font-medium"
                 nativeButton={false}
                 render={<a href="#contact" />}
               >
@@ -62,28 +61,28 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-11 rounded-full bg-surface/60 px-6 text-[15px] backdrop-blur"
+                className="h-12 rounded-full bg-surface/60 px-8 text-[16px] backdrop-blur"
                 nativeButton={false}
-                render={<a href="#content" />}
+                render={<a href="#picks" />}
               >
                 <Play />
-                View My Content
+                View My Work
               </Button>
             </div>
           </Reveal>
 
-          <Reveal delay={320}>
-            <dl className="mt-14 grid max-w-lg grid-cols-3 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline">
+          <Reveal delay={240}>
+            <dl className="mt-12 grid max-w-xl grid-cols-3 gap-4 overflow-hidden">
               {[
-                { label: "Monthly reach", value: "4.8M" },
-                { label: "Engagement", value: "7.4%" },
-                { label: "Conversions", value: "3.2K" },
+                { label: "Projects", value: "25+" },
+                { label: "Technologies", value: "15+" },
+                { label: "Experience", value: "3+" },
               ].map((s) => (
-                <div key={s.label} className="bg-canvas px-4 py-4 sm:px-5">
+                <div key={s.label} className="rounded-2xl border border-hairline bg-surface/50 p-5 backdrop-blur">
                   <dt className="text-[11px] tracking-[0.12em] text-ink-subtle uppercase">
                     {s.label}
                   </dt>
-                  <dd data-numeric className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  <dd data-numeric className="mt-2 text-3xl font-semibold tracking-tight">
                     {s.value}
                   </dd>
                 </div>
@@ -91,18 +90,18 @@ export function Hero() {
             </dl>
           </Reveal>
 
-          <Reveal delay={400}>
-            <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              {proof.map(({ key, Icon }) => (
+          <Reveal delay={300}>
+            <ul className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              {proof.map(({ key, Icon, label }) => (
                 <li key={key}>
                   <a
-                    href={socialLinks[key]}
+                    href={creator.links[key as keyof typeof creator.links] || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 text-sm text-ink-subtle transition-colors hover:text-ink"
+                    className="group inline-flex min-h-6 items-center gap-2.5 text-sm font-medium text-ink-subtle transition-colors hover:text-ink"
                   >
-                    <Icon className="size-4 transition-colors group-hover:text-brand" />
-                    {creator.socials[key]}
+                    <Icon className="size-5 transition-colors group-hover:text-brand" />
+                    {label}
                   </a>
                 </li>
               ))}
@@ -110,55 +109,59 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <Reveal delay={200} className="relative">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
+        <Reveal delay={120} className="relative order-1 lg:order-2">
+          <div className="relative mx-auto aspect-square w-full max-w-sm lg:max-w-md">
             <div
               aria-hidden="true"
-              className="absolute -inset-3 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand/25 via-brand-2/10 to-transparent blur-2xl animate-drift"
+              className="absolute -inset-4 -z-10 rounded-full bg-gradient-to-br from-brand/30 via-brand-2/15 to-transparent blur-3xl animate-drift"
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 rotate-3 rounded-[2rem] border border-hairline bg-brand-soft"
+              className="absolute inset-0 rotate-6 rounded-[2.5rem] border border-hairline bg-brand-soft"
             />
-            <div className="plate relative h-full w-full overflow-hidden rounded-[2rem]">
+            <div className="plate relative h-full w-full overflow-hidden rounded-[2.5rem]">
               <HeroCarousel />
             </div>
 
-            <div className="glass absolute -left-3 top-10 flex items-center gap-2.5 rounded-2xl border border-hairline px-3.5 py-2.5 shadow-lift animate-float">
-              <TikTokIcon className="size-4" />
+            <div className="glass absolute -left-4 top-8 flex items-center gap-3 rounded-2xl border border-hairline px-4 py-3 shadow-lift animate-float">
+              <div className="grid size-10 place-items-center rounded-full bg-brand-soft text-brand">
+                <GitHubIcon className="size-5" />
+              </div>
               <div className="leading-tight">
-                <p data-numeric className="text-sm font-semibold">
-                  2.4M
+                <p data-numeric className="text-base font-semibold">
+                  150+
                 </p>
-                <p className="text-[10px] text-ink-subtle">views</p>
+                <p className="text-[11px] text-ink-subtle">followers</p>
               </div>
             </div>
 
             <div
-              className="glass absolute -right-3 top-1/2 flex items-center gap-2.5 rounded-2xl border border-hairline px-3.5 py-2.5 shadow-lift animate-float"
-              style={{ animationDelay: "1.2s" }}
+              className="glass absolute -right-4 top-1/2 flex items-center gap-3 rounded-2xl border border-hairline px-4 py-3 shadow-lift animate-float"
+              style={{ animationDelay: "1.5s" }}
             >
-              <span className="grid size-7 place-items-center rounded-full bg-brand-soft text-brand">
-                <TrendingUp className="size-4" />
-              </span>
+              <div className="grid size-10 place-items-center rounded-full bg-brand-soft text-brand">
+                <TrendingUp className="size-5" />
+              </div>
               <div className="leading-tight">
-                <p data-numeric className="text-sm font-semibold">
-                  +38%
+                <p data-numeric className="text-base font-semibold">
+                  100%
                 </p>
-                <p className="text-[10px] text-ink-subtle">growth</p>
+                <p className="text-[11px] text-ink-subtle">satisfaction</p>
               </div>
             </div>
 
             <div
-              className="glass absolute -bottom-4 left-8 flex items-center gap-2.5 rounded-2xl border border-hairline px-3.5 py-2.5 shadow-lift animate-float"
-              style={{ animationDelay: "0.6s" }}
+              className="glass absolute -bottom-6 left-12 flex items-center gap-3 rounded-2xl border border-hairline px-4 py-3 shadow-lift animate-float"
+              style={{ animationDelay: "0.8s" }}
             >
-              <InstagramIcon className="size-4" />
+              <div className="grid size-10 place-items-center rounded-full bg-brand-soft text-brand">
+                <WebIcon className="size-5" />
+              </div>
               <div className="leading-tight">
-                <p data-numeric className="text-sm font-semibold">
-                  6.9%
+                <p data-numeric className="text-base font-semibold">
+                  3+
                 </p>
-                <p className="text-[10px] text-ink-subtle">engagement</p>
+                <p className="text-[11px] text-ink-subtle">years</p>
               </div>
             </div>
           </div>

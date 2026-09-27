@@ -21,7 +21,7 @@ export function Process() {
                   <div className="flex items-center justify-between">
                     <span
                       data-numeric
-                      className="text-4xl font-semibold tracking-tighter text-ink-subtle/40 transition-colors duration-500 group-hover:text-brand"
+                      className="text-4xl font-semibold tracking-tighter text-ink-subtle/70 transition-colors duration-500 group-hover:text-brand"
                     >
                       {s.n}
                     </span>

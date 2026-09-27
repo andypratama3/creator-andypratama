@@ -156,7 +156,12 @@ export function Navbar() {
         {open && (
           <div
             id="mobile-menu"
-            className="fixed inset-0 top-0 z-40 lg:hidden"
+            // `overflow-y-auto` is load-bearing, not cosmetic. The panel is taller than a
+            // landscape phone (478px vs ~390px of viewport), and the open state pins
+            // `body` to `overflow: hidden`, so without a scroll container the bottom links
+            // and the primary CTA were clipped and unreachable, not merely off-screen.
+            // `overscroll-contain` stops overscroll chaining to the page behind.
+            className="fixed inset-0 top-0 z-40 overflow-y-auto overscroll-contain lg:hidden"
             onClick={(e) => {
               if (e.target === e.currentTarget) setOpen(false)
             }}
@@ -164,7 +169,9 @@ export function Navbar() {
             <div aria-hidden="true" className="absolute inset-0 glass-deep" />
             <div
               ref={panelRef}
-              className="plate relative mx-4 mt-20 rounded-3xl p-4 shadow-lift"
+              // `dvh` tracks the viewport as mobile browser chrome collapses, which
+              // `100vh` does not. The 6rem allowance covers `mt-20` plus a bottom gutter.
+              className="plate relative mx-4 mt-20 mb-4 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain rounded-3xl p-4 shadow-lift"
             >
               <ul className="flex flex-col">
                 {navLinks.map((l) => (

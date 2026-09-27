@@ -53,7 +53,6 @@ export function StaggerWords({
           <Fragment key={segmentIndex}>
             {words.map((word, i) => {
               const animationDelay = delay + wordIndex++ * step
-              const isLast = i === words.length - 1
               return (
                 <Fragment key={`${word}-${i}`}>
                   <span aria-hidden="true" className="inline-block overflow-hidden align-bottom">
@@ -68,8 +67,11 @@ export function StaggerWords({
                       {word}
                     </span>
                   </span>
-                  {/* Keep real, breakable spaces between words so the headline still wraps. */}
-                  {isLast ? "" : " "}
+                  {/* Always emit a real, breakable space. Skipping it after a segment's
+                      final word welded the segments together, so "Building digital" +
+                      "experiences that matter." rendered as "digitalexperiences". The
+                      trailing space on the very last word is inert. */}
+                  {" "}
                 </Fragment>
               )
             })}

@@ -3,9 +3,7 @@ import { About } from "@/components/site/about"
 import { Audience } from "@/components/site/audience"
 import { Brands } from "@/components/site/brands"
 import { Contact } from "@/components/site/contact"
-import { ContentCategories } from "@/components/site/content-categories"
 import { Faq } from "@/components/site/faq"
-import { FeaturedContent } from "@/components/site/featured-content"
 import { Footer } from "@/components/site/footer"
 import { Hero } from "@/components/site/hero"
 import { JsonLd } from "@/components/site/json-ld"
@@ -21,7 +19,7 @@ import { pageMetadata } from "@/lib/seo"
 export const metadata: Metadata = pageMetadata({
   title: "Home",
   description:
-    "Andy Pratama is a short-form tech and lifestyle creator in Jakarta. 225K followers across TikTok, Instagram and YouTube, plus 3,200+ affiliate conversions for brands.",
+    "Andy Pratama is a software engineer and digital creator based in Samarinda. Building web applications and creating digital experiences that bridge technology and everyday life.",
   path: "/",
 })
 
@@ -35,8 +33,6 @@ export default function Page() {
         <PlatformStats />
         <About />
         <Performance />
-        <FeaturedContent />
-        <ContentCategories />
         <ProductShelf />
         <Audience />
         <Brands />

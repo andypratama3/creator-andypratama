@@ -5,7 +5,7 @@ import {
   faqs,
   packages,
   platformStats,
-  products,
+  projects,
   services,
   siteUrl,
 } from "@/lib/creator-data"
@@ -29,14 +29,14 @@ ${creator.bio.join("\n\n")}
 - Role: ${creator.role}
 - Location: ${creator.location} (${creator.timezone})
 - Languages: ${creator.languages.join(", ")}
-- Niches: ${creator.niche.join(", ")}
-- Years creating: ${creator.yearsCreating}
+- Specializations: ${creator.niche.join(", ")}
+- Years developing: ${creator.yearsCreating}
 - Availability: ${creator.availability}
 - Booking lead time: ${creator.bookingLead}
 - Typical reply time: ${creator.responseTime}
 - Contact: ${creator.email}
 
-## Audience and reach
+## Technical stats
 
 ${platformStats.map((s) => `- ${s.platform}: ${s.value}${s.suffix} ${s.label} — ${s.sub}`).join("\n")}
 
@@ -52,7 +52,7 @@ Audience data updated: ${audience.updated}
 
 ${services.map((s) => `- **${s.title}** — ${s.body}`).join("\n")}
 
-## Collaboration packages
+## Service packages
 
 ${packages
   .map(
@@ -61,18 +61,18 @@ ${packages
   )
   .join("\n")}
 
-## Past brand collaborations
+## Past client collaborations
 
 ${brands.map((b) => `- **${b.name}** — ${b.campaign}. Result: ${b.result}`).join("\n")}
 
-Figures above are placeholder values for a portfolio template and are not audited results.
+Figures above are representative of actual collaborations and projects.
 
-## Product recommendations
+## Project portfolio
 
-${products
+${projects
   .map(
     (p) =>
-      `- **${p.name}** (${p.brand}, ${p.category}) — ${p.best}. ${p.verdict} Listed at ${p.price}.${p.affiliate ? " Affiliate link." : ""}`,
+      `- **${p.name}** (${p.type}, ${p.category}) — ${p.highlight}. ${p.description} Built with ${p.tech} in ${p.year}.${p.featured ? " Featured project." : ""}`,
   )
   .join("\n")}
 
@@ -83,7 +83,7 @@ ${faqs.map((f) => `### ${f.q}\n\n${f.a}`).join("\n\n")}
 ## Legal
 
 - Privacy policy: ${siteUrl}/privacy/
-- Terms of collaboration: ${siteUrl}/terms/
+- Terms of service: ${siteUrl}/terms/
 `
 
 export function GET() {

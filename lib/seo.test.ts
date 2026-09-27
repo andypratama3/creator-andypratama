@@ -4,9 +4,10 @@ import { absoluteUrl, offerPrice, pageMetadata, profileUrl, sameAs, socialLinks 
 
 describe("profileUrl", () => {
   it("composes a canonical URL from the platform base and the declared handle", () => {
-    expect(profileUrl("tiktok")).toBe("https://www.tiktok.com/andypratama")
-    expect(profileUrl("instagram")).toBe("https://www.instagram.com/andy.pratama")
-    expect(profileUrl("youtube")).toBe("https://www.youtube.com/andypratama")
+    expect(profileUrl("github")).toBe("https://github.com/andypratama3")
+    expect(profileUrl("linkedin")).toBe("https://www.linkedin.com/in/andypratama3")
+    expect(profileUrl("instagram")).toBe("https://www.instagram.com/andypratama3")
+    expect(profileUrl("twitter")).toBe("https://x.com/andypratama3")
   })
 })
 
@@ -28,19 +29,19 @@ describe("sameAs", () => {
     }
   })
 
-  it("includes every social profile plus the contact channel", () => {
+  it("includes every social profile", () => {
     expect(sameAs).toEqual([
-      socialLinks.tiktok,
+      socialLinks.github,
+      socialLinks.linkedin,
       socialLinks.instagram,
-      socialLinks.youtube,
-      "https://wa.me/6280000000000",
+      socialLinks.twitter,
     ])
   })
 })
 
 describe("socialLinks", () => {
   it("covers exactly the platforms the icon set renders", () => {
-    expect(Object.keys(socialLinks).sort()).toEqual(["instagram", "tiktok", "youtube"])
+    expect(Object.keys(socialLinks).sort()).toEqual(["github", "instagram", "linkedin", "twitter"])
   })
 })
 
@@ -94,8 +95,8 @@ describe("pageMetadata", () => {
     // The template does not apply to the root segment, so a plain string would render
     // as <title>Home</title>.
     const meta = pageMetadata({ title: "Home", description: "Portfolio.", path: "/" })
-    expect(meta.title).toEqual({ absolute: "Andy Pratama — Creator & Affiliate Marketer" })
-    expect(meta.openGraph?.title).toBe("Andy Pratama — Creator & Affiliate Marketer")
+    expect(meta.title).toEqual({ absolute: "Andy Pratama — Software Engineer & Creator" })
+    expect(meta.openGraph?.title).toBe("Andy Pratama — Software Engineer & Creator")
   })
 
   it("sets a self-referencing canonical and absolute Open Graph URL", () => {

@@ -1,12 +1,12 @@
 # creator-andypratama
 
-Portfolio and media kit website for **Andy Pratama** — a short-form tech and lifestyle
-creator. Built with Next.js App Router, TypeScript and Tailwind CSS v4.
+Portfolio and website for **Andy Pratama** — a software engineer and digital creator.
+Built with Next.js App Router, TypeScript and Tailwind CSS v4.
 
-> **All figures in this repository are placeholder data.** Audience sizes, campaign
-> results, brand names, product names, testimonials and pricing exist to demonstrate the
-> layout. Replace them with real, substantiated numbers before using this site for
-> anything commercial — see [Content](#content) for where that data lives.
+> **All figures in this repository are representative data.** Project counts, technical
+> skills, client collaborations, and service pricing exist to demonstrate the
+> layout. Replace them with your real data before using this site for
+> commercial purposes — see [Content](#content) for where that data lives.
 
 ## Getting started
 
@@ -34,11 +34,11 @@ Every piece of copy, figure and link is driven from **`lib/creator-data.ts`**. T
 site your own, that one file plus a few image swaps in `public/` is the whole job.
 
 - `creator` — name, role, bio, contact details, social handles
-- `platformStats` — follower counts per platform. These values feed both the rendered
+- `platformStats` — technical stats per platform. These values feed both the rendered
   cards and the `interactionStatistic` structured data, so the two can never disagree
-- `brands`, `caseStudy`, `testimonials` — social proof
-- `products` — the recommendation shelf. `affiliate: true` items must keep their disclosure
-- `packages`, `services`, `faqs` — commercial and FAQ content
+- `brands`, `caseStudy`, `testimonials` — client collaborations and social proof
+- `projects` — the project showcase. Featured items highlight key work
+- `packages`, `services`, `faqs` — service offerings and FAQ content
 
 Social URLs are **derived** in `lib/seo.ts` by combining the platform base with the handle
 in `creator.socials`. Editing a handle there updates the visible links, the `sameAs`
@@ -62,9 +62,9 @@ The SEO surface is centralised in `lib/seo.ts` and enforced by tests in `lib/seo
 
 Three deliberate constraints are worth knowing before you edit the schema:
 
-1. The product shelf is **not** marked up with `offers` or `aggregateRating`. Andy
-   recommends these products; he does not sell them. Asserting a price or a review score
-   the page does not provide is a structured-data quality violation.
+1. The project showcase is **not** marked up with `offers` or `aggregateRating`. Andy
+   showcases these projects; they represent technical work and experience. Asserting commercial
+   terms the page does not provide is a structured-data quality violation.
 2. `FAQPage` markup is kept even though Google retired FAQ rich results on 7 May 2026 —
    it is still the format AI answer engines lift question/answer pairs from.
 3. `llms.txt` is shipped as low-cost optionality. Google states it ignores the file, and

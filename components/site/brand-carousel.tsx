@@ -1,108 +1,104 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import { useState } from "react"
+import { Pause, Play } from "lucide-react"
 import { brands } from "@/lib/creator-data"
-import { Reveal } from "./reveal"
+import { cn } from "@/lib/utils"
+
+/**
+ * One half of the marquee.
+ *
+ * Inter-card spacing lives in each card's `pr-8` padding instead of a `gap` on the
+ * track. The `marquee` keyframe translates the track by exactly `-50%`, so both halves
+ * must be pixel-identical in width. A track-level `gap` would also insert one extra gap
+ * at the seam between the halves, making one half wider than 50% of the track, and the
+ * loop would visibly jump on every wrap. With the spacing inside the cards, `-50%` lands
+ * exactly on the seam and the scroll is continuous.
+ * The second copy is `aria-hidden` so assistive tech hears eight logos, not sixteen.
+ */
+function BrandRow({ decorative = false }: { decorative?: boolean }) {
+  return (
+    <div className="flex items-center" aria-hidden={decorative || undefined}>
+      {brands.map((brand, i) => (
+        <div
+          key={brand.name}
+          className="group flex h-28 w-72 flex-shrink-0 items-center justify-center rounded-2xl border border-hairline bg-white p-6 pr-8 shadow-plate backdrop-blur-xl transition-[transform,box-shadow,border-color] duration-500 animate-rise hover:border-brand hover:shadow-lift hover:-translate-y-2 dark:bg-white/10 m-3"
+          style={{ animationDelay: decorative ? undefined : `${i * 70}ms` }}
+        >
+          {brand.logo ? (
+            <Image
+              src={brand.logo}
+              alt={brand.name}
+              width={150}
+              height={80}
+              className="max-h-20 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+            />
+          ) : (
+            <span className="text-sm font-medium text-ink-muted">{brand.name}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export function BrandCarousel() {
-  const [index, setIndex] = useState(0)
-  const timer = useRef<NodeJS.Timeout | null>(null)
-  const touchStart = useRef(0)
-  const touchEnd = useRef(0)
-
-  // Responsive: 1 card mobile, 2 md, 3 lg
-  const [cardsPerView, setCardsPerView] = useState(3)
-  useEffect(() => {
-    const update = () => setCardsPerView(window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1)
-    update()
-    window.addEventListener("resize", update, { passive: true })
-    return () => window.removeEventListener("resize", update)
-  }, [])
-  const maxIndex = Math.max(0, brands.length - cardsPerView)
-  const safeIndex = Math.min(index, maxIndex)
-
-  // Suppress dependency warning: maxIndex is derived from static data.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const next = useCallback(() => setIndex((i) => Math.min(i + 1, maxIndex)), [maxIndex])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const prev = useCallback(() => setIndex((i) => Math.max(i - 1, 0)), [maxIndex])
-
-  useEffect(() => {
-    timer.current = setInterval(next, 4000)
-    return () => { if (timer.current) clearInterval(timer.current) }
-  }, [next])
-
-  const pause = () => { if (timer.current) { clearInterval(timer.current); timer.current = null } }
-  const resume = () => {
-    if (timer.current) return
-    timer.current = setInterval(next, 4000)
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => { touchStart.current = e.changedTouches[0].clientX }
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    touchEnd.current = e.changedTouches[0].clientX
-    const diff = touchStart.current - touchEnd.current
-    if (Math.abs(diff) > 40) { if (diff > 0) next(); else prev(); }
-  }
-
-  const trackStyle = { transform: `translateX(-${safeIndex * (100 / cardsPerView)}%)` }
+  const [paused, setPaused] = useState(false)
 
   return (
-    <div
-      className="relative overflow-hidden rounded-3xl border border-hairline bg-hairline select-none"
-      onMouseEnter={pause}
-      onMouseLeave={resume}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div className="flex transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" style={trackStyle}>
-        {brands.map((b, i) => (
+    <div>
+      {/* `group/carousel` is scoped to the track area, not this wrapper, so hovering the
+          pause button below does not also trigger the CSS hover-pause and make the
+          button's own state look broken. */}
+      <div className="group/carousel relative mx-auto w-full max-w-6xl select-none xl:max-w-7xl">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-linear-to-r from-canvas to-transparent sm:w-32"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-linear-to-l from-canvas to-transparent sm:w-32"
+        />
+
+        {/*
+          `overflow-hidden` is what keeps the 5120px track inside the section. Without it
+          the track overflows the viewport and grows the document's scroll width, which
+          gave the whole page a horizontal scrollbar.
+        */}
+        <div className="overflow-hidden">
           <div
-            key={b.name}
-            className="min-w-full shrink-0 bg-surface p-6 transition-colors duration-500 hover:bg-surface-2 sm:min-w-[calc(50%-0.5rem)] sm:p-7 lg:min-w-[calc(33.333%-0.667rem)]"
-            style={{ minWidth: `calc(100% / ${cardsPerView})` }}
+            className={cn(
+              "marquee-track",
+              // Pausing on hover covers pointer users; the button below covers touch and
+              // keyboard users, satisfying WCAG 2.2.2. `globals.css` disables the
+              // animation outright under `prefers-reduced-motion`.
+              paused
+                ? "[animation-play-state:paused]"
+                : "group-hover/carousel:[animation-play-state:paused]"
+            )}
           >
-            <Reveal delay={(i % 3) * 50} className="h-full">
-              <div className="group flex h-full flex-col justify-between gap-6">
-                <span className="text-lg font-semibold tracking-tight">{b.name}</span>
-                <div>
-                  <p className="text-xs text-ink-subtle">{b.campaign}</p>
-                  <p data-numeric className="mt-1 text-sm font-medium text-brand">
-                    {b.result}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+            <BrandRow />
+            <BrandRow decorative />
           </div>
-        ))}
+        </div>
       </div>
 
-      {/* Navigation */}
-      <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3 rounded-full bg-black/30 px-3 py-2 backdrop-blur-sm md:bottom-6 md:gap-4 md:px-4 md:py-2.5">
+      <div className="mt-2 flex justify-center">
+        {/*
+          A plain action button whose name states the next action, rather than a toggle
+          with a static name plus `aria-pressed`. Both are valid, but flipping the label
+          stays unambiguous once the icon also flips — a "Pause" button reading as
+          "pressed" is a puzzle, whereas "Resume logos" explains itself.
+
+          `min-h-11` is 44px, the touch target WCAG 2.5.5 asks for. The old control had no
+          children at all, so it collapsed to the 26x14 box its own padding made.
+        */}
         <button
-          onClick={() => { prev(); pause(); setTimeout(resume, 3000) }}
-          aria-label="Previous"
-          className="grid size-8 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors md:size-9"
-        >
-          <ChevronLeft className="size-4" />
-        </button>
-        <div className="flex gap-1.5 md:gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => { setIndex(i); pause(); setTimeout(resume, 3000) }}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 md:h-2 ${i === safeIndex ? "w-5 bg-white/90 md:w-6" : "w-1.5 bg-white/30 hover:bg-white/50 md:w-2"}`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={() => { next(); pause(); setTimeout(resume, 3000) }}
-          aria-label="Next"
-          className="grid size-8 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors md:size-9"
-        >
-          <ChevronRight className="size-4" />
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-hairline px-5 text-sm font-medium text-ink-muted transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        > 
         </button>
       </div>
     </div>

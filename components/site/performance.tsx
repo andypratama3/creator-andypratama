@@ -37,8 +37,8 @@ export function Performance() {
       <div className="shell">
         <SectionHeading
           eyebrow="Analytics"
-          title="Performance, not just impressions."
-          description="Results that map to what brands actually care about — reach, engagement, and conversions over time."
+          title="Technical performance & growth."
+          description="Results that matter — project completion, client satisfaction, and technical metrics over time."
         />
 
         <div className="mt-14 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -47,15 +47,15 @@ export function Performance() {
               <figcaption className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-[11px] tracking-[0.18em] text-ink-subtle uppercase">
-                    Content reach index
+                    Project delivery index
                   </p>
                   <p className="mt-2.5 text-[clamp(2rem,4vw,2.75rem)] leading-none font-semibold tracking-tighter">
-                    <CountUp to={4} suffix=".8M" />{" "}
-                    <span className="text-ink-subtle">views / mo</span>
+                    <CountUp to={25} suffix="+" />{" "}
+                    <span className="text-ink-subtle">projects / yr</span>
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1.5 text-sm font-medium text-brand">
-                  +38% growth
+                  +40% growth
                 </span>
               </figcaption>
 
@@ -63,7 +63,7 @@ export function Performance() {
                 viewBox={`0 0 ${W} ${H}`}
                 className="mt-8 h-auto w-full"
                 role="img"
-                aria-label="Line chart showing monthly content reach trending upward over 12 months, from an index of 32 in January to 82 in December"
+                aria-label="Line chart showing project delivery trending upward over 12 months, from an index of 32 in January to 82 in December"
                 preserveAspectRatio="none"
               >
                 <defs>
@@ -132,8 +132,12 @@ export function Performance() {
               <Reveal key={m.label} delay={i * 60} className="h-full">
                 <div className="plate-nested hover-lift flex h-full flex-col justify-between rounded-3xl p-5 sm:p-6">
                   <p className="text-sm text-ink-muted">{m.label}</p>
-                  <p className="mt-5 text-[clamp(1.75rem,3.5vw,2.25rem)] leading-none font-semibold tracking-tighter">
-                    <CountUp to={m.value} suffix={m.suffix} />
+                  <p data-numeric className="mt-5 text-[clamp(1.75rem,3.5vw,2.25rem)] leading-none font-semibold tracking-tighter">
+                    {typeof m.value === 'number' ? (
+                      <CountUp to={m.value} suffix={m.suffix} />
+                    ) : (
+                      <span>{m.value}{m.suffix}</span>
+                    )}
                   </p>
                   <p className="mt-2.5 text-xs font-medium text-ok">{m.trend}</p>
                 </div>

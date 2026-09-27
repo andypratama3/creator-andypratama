@@ -5,7 +5,7 @@ import {
   mediaKitUrl,
   packages,
   platformStats,
-  products,
+  projects,
   siteUrl,
 } from "@/lib/creator-data"
 import { offerPrice, sameAs } from "@/lib/seo"
@@ -47,7 +47,7 @@ export function JsonLd() {
       image: `${siteUrl}/creator-portrait.jpg`,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Jakarta",
+        addressLocality: "Samarinda",
         addressCountry: "ID",
       },
       knowsAbout: [...creator.niche],
@@ -75,24 +75,22 @@ export function JsonLd() {
       publisher: { "@id": `${siteUrl}/#person` },
     },
     {
-      // The shelf lists products Andy recommends, not products sold here. Emitting
-      // `offers` or `aggregateRating` would assert a commercial relationship and a
-      // review score that the page does not provide, which falls under Google's
-      // structured-data quality guidelines. Descriptive fields only.
+      // The shelf lists projects Andy has worked on, showcasing technical skills
+      // and experience. Descriptive fields only without commercial assertions.
       "@type": "ItemList",
       "@id": `${siteUrl}/#picks`,
-      name: "Recommended products",
-      description: "Products reviewed by the creator, with the use case each one fits.",
-      numberOfItems: products.length,
-      itemListElement: products.map((p, i) => ({
+      name: "Projects",
+      description: "Web applications, mobile apps, and technical solutions developed by the creator.",
+      numberOfItems: projects.length,
+      itemListElement: projects.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         item: {
-          "@type": "Product",
+          "@type": "CreativeWork",
           name: p.name,
           category: p.category,
-        description: p.verdict,
-          brand: { "@type": "Brand", name: p.brand },
+          description: p.description,
+          creator: { "@type": "Person", name: creator.name },
         },
       })),
     },

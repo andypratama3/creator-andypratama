@@ -2,12 +2,12 @@
 
 import { ArrowUpRight, Star } from "lucide-react"
 import { useMemo, useState } from "react"
-import { productCategories, products, type ProductCategory } from "@/lib/creator-data"
+import { projectCategories, projects, type ProjectCategory } from "@/lib/creator-data"
 import { cn } from "@/lib/utils"
 import { productIcon, type ProductIconKey } from "./product-icons"
 import { Reveal } from "./reveal"
 import { SectionHeading } from "./section-heading"
-import { socialIcon } from "./icons"
+import { platformIcon, type PlatformKey } from "./icons"
 
 const accentClass: Record<string, string> = {
   brand: "bg-brand-soft text-brand",
@@ -19,10 +19,10 @@ const accentClass: Record<string, string> = {
 }
 
 export function ProductShelf() {
-  const [active, setActive] = useState<ProductCategory>("All")
+  const [active, setActive] = useState<ProjectCategory>("All")
 
   const visible = useMemo(
-    () => (active === "All" ? products : products.filter((p) => p.category === active)),
+    () => (active === "All" ? projects : projects.filter((p) => p.category === active)),
     [active],
   )
 
@@ -30,20 +30,20 @@ export function ProductShelf() {
     <section id="picks" className="px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="What I recommend"
-          title="The kit I actually use."
-          description="Everything below is something I own and use. I only link a product once I've lived with it long enough to know whether it's worth your money."
+          eyebrow="My work"
+          title="Projects I've built."
+          description="A selection of web applications, mobile apps, and technical solutions I've developed for various clients and personal projects."
         />
 
         <Reveal delay={120}>
           <div
             className="no-scrollbar mt-10 flex gap-2 overflow-x-auto pb-1"
             role="group"
-            aria-label="Filter products by category"
+            aria-label="Filter projects by category"
           >
-            {productCategories.map((c) => {
+            {projectCategories.map((c) => {
               const count =
-                c === "All" ? products.length : products.filter((p) => p.category === c).length
+                c === "All" ? projects.length : projects.filter((p) => p.category === c).length
               const selected = active === c
               return (
                 <button
@@ -61,7 +61,7 @@ export function ProductShelf() {
                   {c}
                   <span
                     data-numeric
-                    className={cn("ml-1.5 text-xs", selected ? "text-brand/70" : "text-ink-subtle")}
+                    className={cn("ml-1.5 text-xs", selected ? "text-brand" : "text-ink-subtle")}
                   >
                     {count}
                   </span>
@@ -75,7 +75,7 @@ export function ProductShelf() {
           {visible.map((p, i) => {
             const iconKey = (p.icon in productIcon ? p.icon : "box") as ProductIconKey
             const Icon = productIcon[iconKey]
-            const Social = socialIcon[p.platform]
+            const PlatformIcon = platformIcon[p.platform as PlatformKey] || null
             return (
               <Reveal key={p.name} delay={(i % 3) * 60} className="h-full">
                 <article className="plate group flex h-full flex-col rounded-3xl p-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1">
@@ -89,14 +89,14 @@ export function ProductShelf() {
                       <Icon className="size-5" />
                     </span>
                     <span className="flex items-center gap-1 rounded-full border border-hairline px-2 py-1 text-[11px] text-ink-muted">
-                      <Social className="size-3" />
-                      {p.best}
+                      {PlatformIcon && <PlatformIcon className="size-3" />}
+                      {p.highlight}
                     </span>
                   </div>
 
                   <div className="mt-5">
                     <p className="text-[11px] font-medium tracking-[0.16em] text-ink-subtle uppercase">
-                      {p.brand} · {p.category}
+                      {p.type} · {p.category}
                     </p>
                     <h3 className="mt-2 text-pretty font-semibold tracking-tight text-balance">
                       {p.name}
@@ -104,10 +104,15 @@ export function ProductShelf() {
                   </div>
 
                   <div className="mt-3 flex items-center gap-2">
-                    <span className="flex items-center gap-0.5" aria-label={`${p.rating} out of 5`}>
+                    <span
+                      className="flex items-center gap-0.5"
+                      role="img"
+                      aria-label={`Rated ${p.rating.toFixed(1)} out of 5`}
+                    >
                       {[0, 1, 2, 3, 4].map((s) => (
                         <Star
                           key={s}
+                          aria-hidden="true"
                           className={cn(
                             "size-3.5",
                             s < Math.round(p.rating)
@@ -120,36 +125,34 @@ export function ProductShelf() {
                     <span data-numeric className="text-xs text-ink-muted">
                       {p.rating.toFixed(1)}
                     </span>
-                    {p.affiliate && (
-                      <span className="rounded-full bg-surface-3 px-2 py-0.5 text-[10px] font-medium text-ink-muted">
-                        Affiliate
+                    {p.featured && (
+                      <span className="rounded-full bg-surface-3 px-2 py-0.5 text-[11px] font-medium text-ink-muted">
+                        Featured
                       </span>
                     )}
                   </div>
 
                   <p className="mt-4 flex-1 text-pretty text-sm leading-relaxed text-ink-muted">
-                    {p.verdict}
+                    {p.description}
                   </p>
 
                   <div className="mt-6 flex items-end justify-between gap-3 border-t border-hairline pt-4">
                     <p className="flex items-baseline gap-2">
                       <span data-numeric className="text-xl font-semibold tracking-tight">
-                        {p.price}
+                        {p.tech}
                       </span>
-                      {p.compareAt && (
-                        <span
-                          data-numeric
-                          className="text-sm text-ink-subtle line-through"
-                        >
-                          {p.compareAt}
-                        </span>
-                      )}
+                      <span
+                        data-numeric
+                        className="text-sm text-ink-subtle"
+                      >
+                        {p.year}
+                      </span>
                     </p>
                     <a
                       href={`#contact`}
                       className="inline-flex items-center gap-1 text-sm font-medium text-ink-muted transition-colors hover:text-brand"
                     >
-                      Ask about it
+                      Learn more
                       <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       <span className="sr-only"> {p.name}</span>
                     </a>
@@ -162,10 +165,8 @@ export function ProductShelf() {
 
         <Reveal>
           <p className="mt-8 text-xs leading-relaxed text-ink-subtle">
-            <strong className="font-medium text-ink-muted">Affiliate disclosure:</strong> some
-            links above are affiliate links. If you buy through one, I may earn a commission at no
-            extra cost to you. It never changes what I recommend — products listed here are ones I
-            use and would buy again.
+            <strong className="font-medium text-ink-muted">Project disclosure:</strong> These
+            projects represent a selection of my work across web development, mobile applications, and technical solutions. Each project was built with modern technologies and best practices.
           </p>
         </Reveal>
       </div>

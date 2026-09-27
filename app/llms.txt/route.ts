@@ -15,25 +15,25 @@ const body = `# ${siteName}
 
 > ${creator.positioning}
 
-${creator.name} is a ${creator.role.toLowerCase()} based in ${creator.location}. He produces
-short-form video on ${creator.niche.join(" and ")} for ${creator.yearsCreating} years, reviews
-products he uses personally, and runs tracked affiliate campaigns for brands. Pages on this
+${creator.name} is a ${creator.role.toLowerCase()} based in ${creator.location}. He develops
+web applications and mobile solutions in ${creator.niche.join(" and ")} for ${creator.yearsCreating} years, builds
+digital products for clients, and provides technical consulting services. Pages on this
 site are in English; he also works in Indonesian.
 
 Contact: ${creator.email}
 
 ## Primary
 
-- [${creator.name} — portfolio and contact](${siteUrl}/): Who he is, audience size per platform,
-  case results, services, product recommendations, and a contact form.
-- [Media kit](${mediaKitUrl}/): Audience demographics and locations, platform-by-platform
-  reach, brand collaborations, package pricing, and a downloadable one-page summary.
+- [${creator.name} — portfolio and contact](${siteUrl}/): Who he is, technical skills per platform,
+  project results, services, project showcase, and a contact form.
+- [Media kit](${mediaKitUrl}): Technical skills, project experience, client collaborations,
+  service pricing, and an on-page contact form for briefs and pricing questions.
 
 ## Reference
 
 - [Privacy policy](${siteUrl}/privacy/): What data the contact form collects and how it is used.
-- [Terms of collaboration](${siteUrl}/terms/): Default scope, deliverables, usage rights,
-  payment terms and cancellation for brand work.
+- [Terms of service](${siteUrl}/terms/): Default scope, deliverables, code ownership,
+  payment terms and cancellation for development work.
 
 ## Optional
 

@@ -4,7 +4,7 @@
  * never disagree, and unit-testable without spinning up a server.
  */
 
-export const PROJECT_TYPES = ["Sponsored", "UGC", "Affiliate", "Review", "Long-term"] as const
+export const PROJECT_TYPES = ["Web Development", "Mobile App", "API Development", "Consulting", "Long-term"] as const
 
 export type ProjectType = (typeof PROJECT_TYPES)[number]
 

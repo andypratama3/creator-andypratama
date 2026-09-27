@@ -16,20 +16,24 @@ export function Testimonials() {
       <div className="shell">
         <SectionHeading
           eyebrow="Testimonials"
-          title="What partners say."
-          description="Long-term partners, not one-off campaigns."
+          title="What clients say."
+          description="Long-term partnerships, not one-off projects."
           align="center"
         />
 
         <div className="mt-14 grid gap-4 lg:grid-cols-3">
           {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 80} className="h-full">
+            <Reveal key={t.name} delay={i * 80} className="h-full min-w-0">
               <figure className="plate hover-lift flex h-full flex-col rounded-3xl p-7">
                 <div className="flex items-center justify-between">
                   <Quote className="size-6 text-brand" />
-                  <span className="flex items-center gap-0.5" aria-label="5 out of 5">
+                  <span
+                    className="flex items-center gap-0.5"
+                    role="img"
+                    aria-label="Rated 5 out of 5"
+                  >
                     {Array.from({ length: 5 }).map((_, s) => (
-                      <Star key={s} className="size-3.5 fill-warn text-warn" />
+                      <Star key={s} aria-hidden="true" className="size-3.5 fill-warn text-warn" />
                     ))}
                   </span>
                 </div>

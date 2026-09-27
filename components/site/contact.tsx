@@ -17,7 +17,7 @@ import { Reveal } from "./reveal"
 const projectTypes = PROJECT_TYPES
 
 export function Contact() {
-  const [type, setType] = useState<string>("Sponsored")
+  const [type, setType] = useState<string>("Web Development")
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<FieldErrors>({})
   const [status, setStatus] = useState<{ kind: "error" | "success" | "pending"; text: string } | null>(
@@ -70,7 +70,7 @@ export function Contact() {
       }
 
       form.reset()
-      setType("Sponsored")
+      setType("Web Development")
       setStatus({ kind: "success", text: `Message sent. I'll reply within ${creator.responseTime}.` })
       toast.success("Message sent", {
         description: `Thanks — I'll get back to you within ${creator.responseTime}.`,
@@ -111,11 +111,11 @@ export function Contact() {
                     Let&apos;s collaborate
                   </p>
                   <h2 className="mt-3.5 text-balance text-[clamp(1.9rem,4vw,2.75rem)] leading-[1.08] font-semibold tracking-tight">
-                    Ready to create something that converts?
+                    Ready to build something amazing?
                   </h2>
                   <p className="mt-4 text-pretty leading-relaxed text-ink-muted">
-                    Tell me about your product and goals. I&apos;ll reply with ideas and a
-                    tailored plan for your campaign — usually within {creator.responseTime}.
+                    Tell me about your project and goals. I&apos;ll reply with ideas and a
+                    tailored plan for your development needs — usually within {creator.responseTime}.
                   </p>
                 </div>
 
@@ -200,12 +200,12 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="brand">Brand / Company</Label>
+                    <Label htmlFor="brand">Company / Organization</Label>
                     <Input
                       id="brand"
                       name="brand"
                       autoComplete="organization"
-                      placeholder="Your brand"
+                      placeholder="Your company"
                       className="h-11"
                     />
                   </div>
@@ -240,7 +240,7 @@ export function Contact() {
                       name="message"
                       required
                       rows={4}
-                      placeholder="Tell me about your product, goals, and timeline…"
+                      placeholder="Tell me about your project, requirements, and timeline…"
                       aria-invalid={Boolean(errors.message)}
                       aria-describedby={errors.message ? "message-error" : undefined}
                     />
@@ -258,11 +258,17 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="flex cursor-pointer items-start gap-2.5 text-sm text-ink-muted">
+                    <label
+                      htmlFor="consent"
+                      className="flex cursor-pointer items-start gap-2.5 text-sm text-ink-muted"
+                    >
                       <input
+                        id="consent"
                         type="checkbox"
                         name="consent"
                         required
+                        aria-invalid={Boolean(errors.consent)}
+                        aria-describedby={errors.consent ? "consent-error" : undefined}
                         className="mt-0.5 size-4 shrink-0 rounded border-hairline-strong accent-[var(--brand)]"
                       />
                       <span>
@@ -274,7 +280,11 @@ export function Contact() {
                         .
                       </span>
                     </label>
-                    {errors.consent && <p className="text-xs text-danger">{errors.consent}</p>}
+                    {errors.consent && (
+                      <p id="consent-error" className="text-xs text-danger">
+                        {errors.consent}
+                      </p>
+                    )}
                   </div>
 
                   <Button

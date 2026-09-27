@@ -1,4 +1,4 @@
-import { audience, platformStats } from "@/lib/creator-data"
+import { audience, genderTones, platformStats } from "@/lib/creator-data"
 import { cn } from "@/lib/utils"
 import { CountUp } from "./count-up"
 import { Reveal } from "./reveal"
@@ -103,7 +103,7 @@ export function Audience() {
                   {audience.gender.map((g, i) => (
                     <span
                       key={g.label}
-                      className={["bg-brand", "bg-brand-3", "bg-surface-3"][i]}
+                      className={genderTones[i % genderTones.length]}
                       style={{ width: `${g.value}%` }}
                     />
                   ))}
@@ -114,7 +114,7 @@ export function Audience() {
                       <span
                         className={cn(
                           "size-2 rounded-full",
-                          ["bg-brand", "bg-brand-3", "bg-surface-3"][i],
+                          genderTones[i % genderTones.length],
                         )}
                         aria-hidden="true"
                       />

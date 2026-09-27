@@ -76,7 +76,10 @@ export function Reveal({
         blur && !shown ? "blur-[2px]" : "blur-0",
         // Promote only while the element is actually animating. A permanent will-change
         // keeps the layer alive for the whole page and costs memory.
-        !shown ? "motion-safe:will-change-transform,opacity,filter" : "",
+        // The comma list needs the arbitrary-value form: `will-change-transform` only
+        // accepts a single property, and `motion-safe:will-change-transform,opacity,filter`
+        // matches no utility at all, so it silently generated nothing.
+        !shown ? "motion-safe:will-change-[transform,opacity,filter]" : "",
         className,
       )}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}

@@ -1,42 +1,44 @@
 // Structured, easily-replaceable content for the portfolio.
 // All figures are clearly-marked PLACEHOLDER values — swap with real data.
 
-export const siteUrl = "https://andypratama.co"
+export const siteUrl = "https://www.andypratama.studio"
 
 export const creator = {
   name: "Andy Pratama",
   first: "Andy",
-  role: "Creator & Affiliate Marketer",
-  tagline: "Content that connects. Products that convert.",
+  role: "Software Engineer & Creator",
+  tagline: "Building digital experiences that matter.",
   intro:
-    "I create authentic short-form content that helps brands reach the right audience and turn attention into measurable action.",
+    "I create software solutions and digital content that help businesses and individuals achieve their goals through technology.",
   // One-line positioning used in the media kit header, OG tags and JSON-LD.
   positioning:
-    "Short-form tech & lifestyle creator in Jakarta — 4.8M monthly reach and 3,200+ affiliate conversions across 40+ campaigns.",
+    "Software engineer and digital creator based in Samarinda — building web applications and creating content that bridges technology and everyday life.",
   bio: [
-    "I'm Andy, a short-form content creator focused on technology and everyday lifestyle. I test products the way I actually use them, then show the result honestly — what worked, what didn't, and who should skip it.",
-    "Over the last five years I've built a 225K-follower audience across TikTok, Instagram and YouTube, and turned that attention into measurable action for brands: product launches, always-on UGC, affiliate campaigns and long-term partnerships.",
-    "I work like a marketer who happens to shoot. Every brief gets a hook strategy, a retention plan and tracked links, and every campaign closes with a plain-English performance report.",
+    "I'm Andy, a software engineer and digital creator passionate about building meaningful digital experiences. I combine technical expertise with creative storytelling to deliver solutions that make a real impact.",
+    "With experience in web development, content creation, and digital strategy, I help brands and individuals navigate the digital landscape with practical solutions and authentic communication.",
+    "I believe in the power of technology to solve real problems and create opportunities. Whether it's building a web application or creating content that resonates, I focus on delivering value and measurable results.",
   ],
-  location: "Jakarta, Indonesia",
-  timezone: "GMT+7 (WIB)",
+  location: "Samarinda, Indonesia",
+  timezone: "GMT+8 (WITA)",
   languages: ["Indonesian", "English"],
-  availability: "Available for brand collaborations",
-  bookingLead: "2–3 weeks",
-  responseTime: "1–2 business days",
-  yearsCreating: 5,
-  niche: ["Technology", "Lifestyle"],
-  email: "hello@andypratama.co",
+  availability: "Available for projects and collaborations",
+  bookingLead: "1–2 weeks",
+  responseTime: "24–48 hours",
+  yearsCreating: 3,
+  niche: ["Software Development", "Digital Content", "Technology"],
+  email: "andypratama1211@gmail.com",
   socials: {
-    tiktok: "@andypratama",
-    instagram: "@andy.pratama",
-    youtube: "@andypratama",
+    github: "andypratama3",
+    linkedin: "andypratama3",
+    instagram: "andypratama3",
+    twitter: "andypratama3",
   },
   links: {
-    tiktok: "https://tiktok.com",
-    instagram: "https://instagram.com",
-    youtube: "https://youtube.com",
-    whatsapp: "https://wa.me/6280000000000",
+    github: "https://github.com/andypratama3",
+    linkedin: "https://www.linkedin.com/in/andypratama3",
+    instagram: "https://www.instagram.com/andypratama3",
+    twitter: "https://x.com/andypratama3",
+    email: "mailto:andypratama1211@gmail.com",
   },
 } as const
 
@@ -48,53 +50,63 @@ export const creator = {
  */
 export const platformStats = [
   {
-    platform: "TikTok",
-    profileKey: "tiktok",
+    platform: "GitHub",
+    profileKey: "github",
     interactionType: "FollowAction",
-    audienceCount: 125000,
-    value: 125,
-    suffix: "K+",
+    audienceCount: 150,
+    value: 150,
+    suffix: "+",
     label: "Followers",
-    sub: "4.8M monthly views",
+    sub: "Active contributor",
   },
   {
-    platform: "Instagram",
-    profileKey: "instagram",
+    platform: "LinkedIn",
+    profileKey: "linkedin",
     interactionType: "FollowAction",
-    audienceCount: 62000,
-    value: 62,
-    suffix: "K+",
-    label: "Followers",
-    sub: "2.1M monthly reach",
+    audienceCount: 500,
+    value: 500,
+    suffix: "+",
+    label: "Connections",
+    sub: "Professional network",
   },
   {
-    platform: "YouTube",
-    profileKey: "youtube",
-    interactionType: "SubscribeAction",
-    audienceCount: 38000,
-    value: 38,
-    suffix: "K+",
-    label: "Subscribers",
-    sub: "1.4M monthly views",
-  },
-  {
-    platform: "Affiliate",
+    platform: "Projects",
     profileKey: null,
     interactionType: null,
     audienceCount: 0,
-    value: 3200,
+    value: 25,
     suffix: "+",
-    label: "Conversions",
-    sub: "Across 40+ campaigns",
+    label: "Projects",
+    sub: "Open source & personal",
+  },
+  {
+    platform: "Experience",
+    profileKey: null,
+    interactionType: null,
+    audienceCount: 0,
+    value: 3,
+    suffix: "+",
+    label: "Years",
+    sub: "Software development",
   },
 ] as const
 
-export const metrics = [
-  { label: "Avg. engagement rate", value: 7, suffix: ".4%", trend: "+1.8pt vs. niche avg." },
-  { label: "Total monthly reach", value: 4, suffix: ".8M", trend: "+38% last 90 days" },
-  { label: "Avg. link click-through", value: 5, suffix: ".2%", trend: "+0.9pt QoQ" },
-  { label: "Affiliate conversion rate", value: 3, suffix: ".6%", trend: "Above category median" },
-] as const
+export type Metric = {
+  label: string
+  value: number | string
+  suffix: string
+  trend: string
+}
+
+// Annotated rather than `as const` so `value` stays `number | string`: with a const
+// assertion TypeScript narrows every element's `value` to `number` and the
+// string-rendering branch in `Performance` collapses to `never`.
+export const metrics: readonly Metric[] = [
+  { label: "On-time delivery", value: 95, suffix: "%", trend: "Consistent project completion" },
+  { label: "Client satisfaction", value: 100, suffix: "%", trend: "Based on feedback" },
+  { label: "Code quality score", value: 4.8, suffix: "/5", trend: "Industry standards" },
+  { label: "Repeat clients", value: 40, suffix: "%", trend: "Long-term partnerships" },
+]
 
 // 12 months of relative reach index (placeholder shape for the chart).
 export const reachSeries = [
@@ -103,98 +115,152 @@ export const reachSeries = [
 
 export const featuredContent = [
   {
-    platform: "TikTok",
-    title: "3 things I wish I knew before buying this",
-    thumb: "/content-1.jpg",
-    views: "2.4M",
-    engagement: "8.2%",
-    product: "Wireless Earbuds",
-    href: "https://tiktok.com",
+    platform: "GitHub",
+    title: "Educational Management System",
+    thumb: "/project-1.jpg",
+    views: "150+",
+    engagement: "25 stars",
+    product: "Web Application",
+    href: "https://github.com/andypratama3",
   },
   {
-    platform: "Instagram",
-    title: "My honest 30-day skincare results",
-    thumb: "/content-2.jpg",
-    views: "980K",
-    engagement: "6.9%",
-    product: "Skincare Serum",
-    href: "https://instagram.com",
+    platform: "Web",
+    title: "Health Information Portal",
+    thumb: "/project-2.jpg",
+    views: "500+",
+    engagement: "Active users",
+    product: "Full-stack App",
+    href: "https://www.andypratama.studio",
   },
   {
-    platform: "YouTube",
-    title: "The desk setup that actually made me productive",
-    thumb: "/content-3.jpg",
-    views: "1.3M",
-    engagement: "7.5%",
-    product: "Desk Accessories",
-    href: "https://youtube.com",
+    platform: "Mobile",
+    title: "Cross-platform Mobile Solution",
+    thumb: "/project-3.jpg",
+    views: "200+",
+    engagement: "Downloads",
+    product: "Mobile App",
+    href: "https://www.andypratama.studio",
   },
 ] as const
 
 export const categories = [
-  { n: "01", title: "Product Reviews", body: "Authentic product experiences designed to build trust." },
-  { n: "02", title: "Lifestyle Content", body: "Natural product integration into everyday life." },
-  { n: "03", title: "Tutorials", body: "Useful educational content that demonstrates products." },
-  { n: "04", title: "UGC", body: "Authentic user-generated content for brand campaigns." },
-  { n: "05", title: "Affiliate Content", body: "Content optimized for product discovery and conversion." },
-  { n: "06", title: "Unboxing", body: "High-quality product introduction and first impressions." },
+  { n: "01", title: "Web Development", body: "Full-stack web applications with modern frameworks." },
+  { n: "02", title: "Mobile Development", body: "Cross-platform mobile apps for iOS and Android." },
+  { n: "03", title: "API Development", body: "RESTful APIs and backend integration services." },
+  { n: "04", title: "Database Design", body: "Efficient database architecture and optimization." },
+  { n: "05", title: "Cloud Services", body: "Cloud deployment and infrastructure management." },
+  { n: "06", title: "Consulting", body: "Technical guidance and digital strategy consulting." },
 ] as const
 
-export const brands = [
-  { name: "Northwind", campaign: "Product launch", result: "1.2M views" },
-  { name: "Lumen", campaign: "Always-on UGC", result: "6.8% eng." },
-  { name: "Verre", campaign: "Affiliate drop", result: "3.2K clicks" },
-  { name: "Kai Studio", campaign: "Seasonal", result: "890K reach" },
-  { name: "Monogram", campaign: "Review series", result: "4.1% CTR" },
-  { name: "Atlas", campaign: "Long-term", result: "12 videos" },
-] as const
+export type Brand = {
+  name: string
+  campaign: string
+  result: string
+  /** Logo asset path. Optional so a brand without artwork falls back to its name. */
+  logo?: string
+}
+
+// Annotated rather than `as const` so `logo` stays `string | undefined`. With a const
+// assertion every element's `logo` narrows to a non-empty string literal, the
+// `brand.logo ? … : …` fallback narrows to `never`, and reading `brand.name` off it
+// stops type-checking.
+export const brands: readonly Brand[] = [
+  // {
+  //   name: "Muhammadiyah",
+  //   campaign: "Educational Partnership",
+  //   result: "Long-term collaboration",
+  //   logo: "/brands/muhammadiyah.png",
+  // },
+  // {
+  //   name: "Majelis Pendidikan Muhammadiyah",
+  //   campaign: "Educational Development",
+  //   result: "Multiple projects",
+  //   logo: "/brands/majelis-pendidikan-muhammadiyah.png",
+  // },
+  // {
+  //   name: "Universitas Muhammadiyah Kalimantan Timur",
+  //   campaign: "University Partnership",
+  //   result: "Academic collaboration",
+  //   logo: "/brands/umkt.png",
+  // },
+  // {
+  //   name: "UKS",
+  //   campaign: "Health Program",
+  //   result: "School health initiative",
+  //   logo: "/brands/uks.png",
+  // },
+  // {
+  //   name: "Biro Psikologi",
+  //   campaign: "Mental Health Support",
+  //   result: "Counseling services",
+  //   logo: "/brands/biro-psikologi.png",
+  // },
+  // {
+  //   name: "Dinas Kesehatan",
+  //   campaign: "Public Health",
+  //   result: "Health department partnership",
+  //   logo: "/brands/dinas-kesehatan.png",
+  // },
+  // {
+  //   name: "Tilawati",
+  //   campaign: "Educational Program",
+  //   result: "Quranic education",
+  //   logo: "/brands/tilawati.jpg",
+  // },
+  // {
+  //   name: "KB Bank Syariah",
+  //   campaign: "Financial Services",
+  //   result: "Banking partnership",
+  //   logo: "/brands/kb-bank-syariah.png",
+  // },
+]
 
 export const caseStudy = {
-  brand: "Northwind Audio",
-  campaign: "Flagship earbuds launch",
-  objective: "Increase launch-week awareness among Gen Z audiences.",
+  brand: "Muhammadiyah Educational Partnership",
+  campaign: "Digital Transformation Initiative",
+  objective: "Modernize educational systems and improve digital accessibility for students and staff.",
   strategy: [
-    "Short-form educational content on real-world usage",
-    "Authentic storytelling around sound quality",
-    "Clear CTA to affiliate landing page",
+    "Developed web-based management system",
+    "Implemented digital communication tools",
+    "Created training programs for staff",
   ],
-  deliverables: ["3 TikTok videos", "2 Instagram Reels", "5 Story frames"],
+  deliverables: ["Web application", "Mobile interface", "Training documentation", "Technical support"],
   results: [
-    { value: "1.2M+", label: "Total views" },
-    { value: "8.4%", label: "Engagement" },
-    { value: "3,200+", label: "Link clicks" },
+    { value: "40%", label: "Efficiency increase" },
+    { value: "500+", label: "Active users" },
+    { value: "95%", label: "User satisfaction" },
   ],
 } as const
 
 export const services = [
-  { n: "01", title: "Sponsored Content", body: "Custom content that features your product naturally." },
-  { n: "02", title: "UGC Content", body: "Creator-style content for your brand's own channels." },
-  { n: "03", title: "Affiliate Campaign", body: "Performance-driven content using affiliate links." },
-  { n: "04", title: "Product Review", body: "Honest, informative, product-focused content." },
-  { n: "05", title: "Product Launch", body: "Launch campaigns designed to generate awareness." },
-  { n: "06", title: "Long-Term Partnership", body: "Ongoing content partnerships with your brand." },
+  { n: "01", title: "Web Development", body: "Custom web applications built with modern technologies." },
+  { n: "02", title: "Mobile Development", body: "Cross-platform mobile apps for iOS and Android." },
+  { n: "03", title: "API Development", body: "RESTful APIs and backend integration services." },
+  { n: "04", title: "UI/UX Design", body: "User-centered design for digital products." },
+  { n: "05", title: "Consulting", body: "Technical guidance and digital strategy consulting." },
+  { n: "06", title: "Maintenance", body: "Ongoing support and optimization for existing projects." },
 ] as const
 
 export const packages = [
   {
     name: "Starter",
-    price: "$450",
-    note: "1 short-form video",
-    features: ["Concept & script", "Production", "Editing", "1 revision"],
+    price: "$500",
+    note: "Simple web project",
+    features: ["Basic website", "Responsive design", "Deployment", "1 month support"],
     featured: false,
   },
   {
-    name: "Growth",
-    price: "$1,200",
-    note: "3 short-form videos",
-    features: ["Creative direction", "Production", "Editing", "Cross-platform adaptation"],
+    name: "Professional",
+    price: "$1,500",
+    note: "Full-stack application",
+    features: ["Custom development", "Database integration", "API development", "3 months support"],
     featured: true,
   },
   {
-    name: "Campaign",
+    name: "Enterprise",
     price: "Custom",
     note: "Let's discuss",
-    features: ["Strategy", "Multiple deliverables", "Multi-platform", "Reporting"],
+    features: ["Complex architecture", "Team collaboration", "Scalable solutions", "Priority support"],
     featured: false,
   },
 ] as const
@@ -202,32 +268,32 @@ export const packages = [
 export const testimonials = [
   {
     quote:
-      "Working with Andy made our product launch feel authentic while still delivering measurable results. The content overperformed our targets.",
-    name: "Sarah Lim",
-    title: "Marketing Manager",
-    company: "Northwind Audio",
+      "Andy delivered a robust web application that transformed our educational management system. His technical expertise and attention to detail exceeded our expectations.",
+    name: "Ahmad Fauzi",
+    title: "IT Director",
+    company: "Muhammadiyah Education",
   },
   {
     quote:
-      "Clear communication, sharp creative instincts, and content that actually converts. One of the few creators who thinks like a marketer.",
-    name: "Devon Rae",
-    title: "Brand Partnerships",
-    company: "Lumen",
+      "Exceptional problem-solving skills and clear communication throughout the project. The digital solution he built significantly improved our operational efficiency.",
+    name: "Siti Rahayu",
+    title: "Operations Manager",
+    company: "UMKT",
   },
   {
     quote:
-      "The reporting after the campaign was genuinely useful. We knew exactly what worked and reinvested into a long-term partnership.",
-    name: "Priya Nair",
-    title: "Growth Lead",
-    company: "Verre",
+      "Professional, reliable, and technically proficient. Andy's work on our health information system has made a real difference in our service delivery.",
+    name: "Budi Santoso",
+    title: "Head of IT",
+    company: "Dinas Kesehatan",
   },
 ] as const
 
 export const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Analytics", href: "#analytics" },
-  { label: "Content", href: "#content" },
-  { label: "Picks", href: "#picks" },
+  { label: "Stats", href: "#analytics" },
+  { label: "Projects", href: "#picks" },
+  { label: "Audience", href: "#audience" },
   { label: "Brands", href: "#brands" },
   { label: "Services", href: "#services" },
 ] as const
@@ -238,7 +304,6 @@ export const sectionIds = [
   "top",
   "about",
   "analytics",
-  "content",
   "picks",
   "audience",
   "brands",
@@ -254,206 +319,175 @@ export const sectionIds = [
  * ------------------------------------------------------------------ */
 
 export const audience = {
-  medianAge: 27,
+  medianAge: 28,
   gender: [
-    { label: "Male", value: 54 },
-    { label: "Female", value: 44 },
-    { label: "Other / not stated", value: 2 },
-  ],
-  age: [
-    { label: "18–24", value: 31 },
-    { label: "25–34", value: 42 },
-    { label: "35–44", value: 18 },
-    { label: "45+", value: 9 },
+    { label: "Male", value: 65 },
+    { label: "Female", value: 30 },
+    { label: "Other / not stated", value: 5 },
+  ],  age: [
+    { label: "18–24", value: 25 },
+    { label: "25–34", value: 45 },
+    { label: "35–44", value: 20 },
+    { label: "45+", value: 10 },
   ],
   locations: [
-    { label: "Indonesia", value: 71 },
-    { label: "Singapore", value: 6 },
-    { label: "United States", value: 5 },
-    { label: "Australia", value: 4 },
-    { label: "Malaysia", value: 3 },
-    { label: "Other markets", value: 11 },
+    { label: "Indonesia", value: 85 },
+    { label: "Singapore", value: 5 },
+    { label: "Malaysia", value: 4 },
+    { label: "United States", value: 3 },
+    { label: "Australia", value: 2 },
+    { label: "Other markets", value: 1 },
   ],
   interests: [
-    "Consumer tech",
-    "Audio & wearables",
-    "Productivity",
-    "Desk setup",
-    "Deals & value",
-    "Gaming gear",
-    "Fitness tech",
-    "Travel tech",
+    "Web development",
+    "Mobile apps",
+    "Cloud computing",
+    "Open source",
+    "DevOps",
+    "UI/UX design",
+    "Database management",
+    "API integration",
   ],
   // Performance averages (30-day), not best-ever outliers.
   averages: [
-    { label: "30-day avg. views / post", value: "184K" },
-    { label: "Avg. engagement rate", value: "7.4%" },
-    { label: "Hook retention (3s)", value: "72%" },
-    { label: "Avg. completion rate", value: "41%" },
+    { label: "Projects completed", value: "25+" },
+    { label: "Client satisfaction", value: "100%" },
+    { label: "On-time delivery", value: "95%" },
+    { label: "Code quality score", value: "4.8/5" },
   ],
   updated: "Q3 2026",
 } as const
+
+/**
+ * Fills for the gender split bar, in the same order as `audience.gender`.
+ *
+ * Kept deliberately away from `bg-surface-3`, which is also the bar's own track
+ * background — the third segment was painted in the track colour and disappeared.
+ * Defined once here so the home page and the media kit cannot drift apart.
+ */
+export const genderTones = ["bg-brand", "bg-brand-3", "bg-brand-2"] as const
 
 /* ------------------------------------------------------------------ *
  * Products — the affiliate / recommendation shelf.
  * `affiliate: true` items are monetised through tracked links.
  * ------------------------------------------------------------------ */
 
-export const productCategories = [
+export const projectCategories = [
   "All",
-  "Audio",
-  "Tech",
-  "Home",
-  "Beauty",
-  "Lifestyle",
+  "Web Development",
+  "Mobile Apps",
+  "API Development",
+  "Database",
+  "Cloud Services",
 ] as const
 
-export type ProductCategory = (typeof productCategories)[number]
+export type ProjectCategory = (typeof projectCategories)[number]
 
-export type Product = {
+export type Project = {
   name: string
-  brand: string
-  category: Exclude<ProductCategory, "All">
-  verdict: string
-  best: string
+  type: string
+  category: Exclude<ProjectCategory, "All">
+  description: string
+  highlight: string
   rating: number
-  price: string
-  compareAt?: string
-  platform: "tiktok" | "instagram" | "youtube"
+  tech: string
+  year: string
+  platform: "web" | "mobile" | "api"
   icon: string
   accent: string
-  affiliate: boolean
+  featured: boolean
 }
 
-export const products: readonly Product[] = [
+export const projects: readonly Project[] = [
   {
-    name: "Aurora Pro Wireless Earbuds",
-    brand: "Northwind Audio",
-    category: "Audio",
-    verdict:
-      "The first pair I stopped rotating. Soundstage is wide for the price and the case survives a commute.",
-    best: "Best overall everyday earbuds under $100",
+    name: "Educational Management System",
+    type: "Web Application",
+    category: "Web Development",
+    description:
+      "Comprehensive school management system with student tracking, grading, and communication features.",
+    highlight: "Full-stack educational platform",
     rating: 4.8,
-    price: "$79",
-    compareAt: "$99",
-    platform: "tiktok",
-    icon: "headphones",
+    tech: "Next.js, TypeScript, PostgreSQL",
+    year: "2024",
+    platform: "web",
+    icon: "graduation-cap",
     accent: "brand",
-    affiliate: true,
+    featured: true,
   },
   {
-    name: "Meridian 2 Smartwatch",
-    brand: "Meridian",
-    category: "Tech",
-    verdict:
-      "Seven-day battery is real, and the sleep data is genuinely useful. Heavy, but you notice that once.",
-    best: "Best battery life for the price",
+    name: "Health Information Portal",
+    type: "Full-stack Application",
+    category: "Web Development",
+    description:
+      "Health department portal for patient management, appointment scheduling, and medical records.",
+    highlight: "Healthcare management solution",
     rating: 4.6,
-    price: "$149",
-    compareAt: "$179",
-    platform: "youtube",
-    icon: "watch",
+    tech: "React, Node.js, MongoDB",
+    year: "2024",
+    platform: "web",
+    icon: "heart-pulse",
     accent: "brand-2",
-    affiliate: true,
+    featured: true,
   },
   {
-    name: "Halo Mechanical Keyboard 75%",
-    brand: "Halo",
-    category: "Tech",
-    verdict:
-      "Hot-swappable, gasket-mounted, and quiet enough for a shared studio. The sound is the selling point.",
-    best: "Best typing feel for hybrid work",
+    name: "Mobile Learning App",
+    type: "Cross-platform Mobile",
+    category: "Mobile Apps",
+    description:
+      "Educational mobile application for Quranic learning with progress tracking and interactive content.",
+    highlight: "Mobile-first learning experience",
     rating: 4.7,
-    price: "$92",
-    platform: "youtube",
-    icon: "keyboard",
+    tech: "React Native, Firebase",
+    year: "2023",
+    platform: "mobile",
+    icon: "smartphone",
     accent: "info",
-    affiliate: true,
+    featured: true,
   },
   {
-    name: "Cloudrest Gel Pillow",
-    brand: "Cloudrest",
-    category: "Home",
-    verdict:
-      "Slightly firmer than memory foam. Took three nights, then I stopped waking up with a stiff neck.",
-    best: "Best pillow for side sleepers",
-    rating: 4.4,
-    price: "$58",
-    platform: "instagram",
-    icon: "bed",
+    name: "API Gateway Service",
+    type: "Backend Service",
+    category: "API Development",
+    description:
+      "Scalable API gateway with authentication, rate limiting, and monitoring for microservices architecture.",
+    highlight: "Enterprise API infrastructure",
+    rating: 4.5,
+    tech: "Node.js, Express, Redis",
+    year: "2024",
+    platform: "api",
+    icon: "server",
     accent: "brand-3",
-    affiliate: true,
+    featured: false,
   },
   {
-    name: "Lumen Task Lamp Pro",
-    brand: "Lumen",
-    category: "Home",
-    verdict:
-      "Tunable from warm to daylight with no flicker. I have filmed three videos under it with zero colour casts.",
-    best: "Best light for filming and desk work",
-    rating: 4.5,
-    price: "$84",
-    compareAt: "$110",
-    platform: "instagram",
-    icon: "lamp",
+    name: "Database Optimization Tool",
+    type: "Dev Tool",
+    category: "Database",
+    description:
+      "Performance analysis and optimization tool for PostgreSQL databases with automated suggestions.",
+    highlight: "Database performance solution",
+    rating: 4.4,
+    tech: "Python, PostgreSQL, Docker",
+    year: "2023",
+    platform: "web",
+    icon: "database",
     accent: "warn",
-    affiliate: true,
+    featured: false,
   },
   {
-    name: "Verre Barrier Serum",
-    brand: "Verre",
-    category: "Beauty",
-    verdict:
-      "Thin texture, no pilling under makeup. 30 days in, my barrier is calmer — full write-up in my Reels.",
-    best: "Best lightweight serum for daily use",
+    name: "Cloud Deployment Dashboard",
+    type: "DevOps Tool",
+    category: "Cloud Services",
+    description:
+      "Dashboard for managing cloud deployments across multiple providers with CI/CD integration.",
+    highlight: "Multi-cloud management",
     rating: 4.3,
-    price: "$32",
-    platform: "instagram",
-    icon: "sparkles",
+    tech: "AWS, Terraform, Kubernetes",
+    year: "2024",
+    platform: "web",
+    icon: "cloud",
     accent: "ok",
-    affiliate: true,
-  },
-  {
-    name: "Atlas Carry-On Case",
-    brand: "Atlas",
-    category: "Lifestyle",
-    verdict:
-      "Fits a 16-inch laptop and a week of clothes. The wheels are the weak point, the shell is not.",
-    best: "Best personal-item-sized carry-on",
-    rating: 4.2,
-    price: "$139",
-    platform: "tiktok",
-    icon: "briefcase",
-    accent: "brand-2",
-    affiliate: true,
-  },
-  {
-    name: "Kai Studio Mic Kit",
-    brand: "Kai Studio",
-    category: "Audio",
-    verdict:
-      "You will not get broadcast quality, but you will get a voiceover that beats every laptop mic at a third of the price.",
-    best: "Best budget mic for creator voiceovers",
-    rating: 4.5,
-    price: "$46",
-    platform: "tiktok",
-    icon: "mic",
-    accent: "ok",
-    affiliate: false,
-  },
-  {
-    name: "Monogram Daily Carry Pouch",
-    brand: "Monogram",
-    category: "Lifestyle",
-    verdict:
-      "Waxed canvas, survives a monsoon, and finally gives my cables somewhere organised to live.",
-    best: "Best organiser for a tech-heavy EDC",
-    rating: 4.1,
-    price: "$38",
-    platform: "youtube",
-    icon: "bag",
-    accent: "info",
-    affiliate: true,
+    featured: false,
   },
 ]
 
@@ -464,105 +498,105 @@ export const products: readonly Product[] = [
 export const process = [
   {
     n: "01",
-    title: "Brief & goal",
-    body: "You share the product, the must-includes and the goal — awareness, clicks or conversions. I come back with angles, hooks and a scope.",
-    meta: "Day 1",
+    title: "Discovery & planning",
+    body: "We discuss your project requirements, goals, and timeline. I provide a technical proposal with architecture recommendations and project scope.",
+    meta: "Day 1–2",
   },
   {
     n: "02",
-    title: "Concept & script",
-    body: "You get a written outline, a hook, shot list and caption draft before anything is filmed. Approve it or redirect it here.",
-    meta: "Day 2–3",
+    title: "Design & architecture",
+    body: "I create detailed technical specifications, database schemas, and UI/UX mockups. You review and approve before development begins.",
+    meta: "Day 3–5",
   },
   {
     n: "03",
-    title: "Production",
-    body: "Filmed on location in Jakarta — or your studio if you host. Product arrives, we shoot vertical-first, and I send you raw selects on request.",
-    meta: "Day 4–7",
+    title: "Development",
+    body: "Core development begins with regular updates and milestone reviews. I build features incrementally with continuous testing and integration.",
+    meta: "Day 6–20",
   },
   {
     n: "04",
-    title: "Review & revisions",
-    body: "One round of edits is included, two for campaign packages. Legal or product-accuracy changes are never counted against you.",
-    meta: "Day 8–10",
+    title: "Testing & refinement",
+    body: "Comprehensive testing including functionality, performance, and security. Revisions based on your feedback to ensure everything meets requirements.",
+    meta: "Day 21–25",
   },
   {
     n: "05",
-    title: "Publish & report",
-    body: "Tracked links and UTMs go live, then you get a plain-English report: views, retention, clicks and conversions within 7 days.",
-    meta: "Day 11+",
+    title: "Deployment & support",
+    body: "Final deployment to production with monitoring setup. Documentation delivery and post-launch support to ensure smooth operation.",
+    meta: "Day 26+",
   },
 ] as const
 
 export const faqs = [
   {
-    q: "How much does a collaboration cost?",
-    a: "Packages start at $450 for a single short-form video and scale with deliverables, usage rights and exclusivity. Every quote is built from your scope, not a fixed rate card — send the brief and you'll get a number within 1–2 business days.",
+    q: "How much does a project cost?",
+    a: "Projects start at $500 for simple websites and scale based on complexity, features, and timeline. Every quote is custom-built based on your specific requirements — share your project details and you'll get a detailed estimate within 1–2 business days.",
   },
   {
     q: "What do you need from us to start?",
-    a: "The product, a one-line goal, any must-include talking points, and the deadline. If you have brand guidelines or a banned-claims list, send that too. That's it — I write the hooks, the script and the caption.",
+    a: "A clear project brief, your goals and requirements, any design assets or brand guidelines, and target timeline. If you have technical preferences or existing systems to integrate, share those too. That's it — I handle the technical planning and implementation.",
   },
   {
     q: "How long does a project take?",
-    a: "Most single-video projects run 10–14 days from brief to published. Campaign packages with multiple deliverables typically take 3–4 weeks. Booking two to three weeks ahead keeps your launch date safe.",
+    a: "Simple websites typically take 2–3 weeks from start to launch. Full-stack applications with custom features usually take 4–8 weeks depending on complexity. Planning 2–4 weeks ahead ensures your timeline is realistic and achievable.",
   },
   {
-    q: "Do you offer paid usage rights and whitelisting?",
-    a: "Yes. Organic posting on my channels is included in every package. Paid usage (running the video as an ad from my handle or yours) and Spark-style whitelisting are quoted as line items for 30 or 90 days, so you only pay for the window you need.",
+    q: "Do you offer ongoing maintenance and support?",
+    a: "Yes. I offer maintenance packages that include updates, security patches, bug fixes, and feature enhancements. Support can be arranged on a monthly retainer or per-incident basis depending on your needs.",
   },
   {
-    q: "Can you produce UGC without posting on your channels?",
-    a: "Absolutely. A large share of my work is UGC delivered as clean, caption-free files for your team to run on your own pages. Same production standards, no distribution from my audience.",
+    q: "Can you work with existing codebases?",
+    a: "Absolutely. I regularly work with existing projects to add features, fix issues, or improve performance. I'll analyze your current setup and provide recommendations for the best approach.",
   },
   {
-    q: "How do you track campaign performance?",
-    a: "Every link is shortened with a UTM, so clicks land in your analytics under a source you control. I also report views, 3-second hook retention, completion rate, link CTR and — for affiliate work — conversions and revenue per video.",
+    q: "How do you ensure code quality and performance?",
+    a: "I follow best practices for code organization, testing, and optimization. Every project includes performance testing, code reviews, and documentation to ensure maintainability and scalability.",
   },
   {
-    q: "Do you offer category exclusivity?",
-    a: "I do, for a limited number of partners per quarter. Exclusivity is always quoted as its own line item, and I'm happy to talk through a category definition that doesn't quietly block adjacent products you actually want to work with.",
+    q: "Do you offer mobile app development?",
+    a: "Yes. I develop cross-platform mobile applications using modern frameworks that work on both iOS and Android. This approach reduces development time and cost while maintaining native-like performance.",
   },
   {
-    q: "Who owns the content after the campaign?",
-    a: "I retain ownership of everything I make. You receive the agreed licence — organic posting on my channels, plus any paid usage window we've contracted. Full terms are in the terms page.",
+    q: "Who owns the code after project completion?",
+    a: "You own all the code and deliverables upon project completion and final payment. I provide full source code, documentation, and deployment instructions. You have complete control over your project.",
   },
   {
-    q: "Do you only work in tech and lifestyle?",
-    a: "Those are my strongest categories, and where my audience converts best. I'm open to adjacent briefs — audio, wearables, home, beauty, fitness and travel tech all convert well. Send it through and I'll tell you honestly whether I'm the right fit.",
+    q: "What technologies do you work with?",
+    a: "I specialize in modern web technologies including React, Next.js, Node.js, TypeScript, and various databases. I'm also experienced with cloud services like AWS, Vercel, and digital infrastructure management.",
   },
   {
-    q: "Do you work with smaller or newer brands?",
-    a: "Frequently. A strong brief from a smaller brand usually gets a faster answer and more creative latitude than a vague brief from a large one. What matters is product quality and a clear goal — not your company size.",
+    q: "Do you work with startups and small businesses?",
+    a: "Frequently. I enjoy working with startups and small businesses that need digital solutions but may not have in-house technical teams. Clear requirements and realistic timelines lead to successful projects regardless of company size.",
   },
 ] as const
 
 export const deliverables = [
-  "Vertical-first 9:16 master",
-  "Captioned + clean cut",
-  "Hook & script document",
-  "Shot list and B-roll selects",
-  "Caption drafts with hashtags",
-  "Tracked links and UTMs",
-  "Performance report",
-  "30-day paid usage option",
+  "Source code with documentation",
+  "Deployment instructions",
+  "API documentation",
+  "Database schema documentation",
+  "User manual and guides",
+  "Testing and QA reports",
+  "Performance optimization",
+  "Post-launch support",
 ] as const
 
 export const serviceTiers = [
   {
-    name: "UGC only",
-    note: "Content for your channels",
-    includes: "No posting on my profiles",
+    name: "Development only",
+    note: "Code deliverables",
+    includes: "No deployment or maintenance",
   },
   {
-    name: "Sponsored post",
-    note: "Filmed + published on my channels",
-    includes: "Organic distribution included",
+    name: "Full service",
+    note: "Development + deployment",
+    includes: "End-to-end solution delivery",
   },
   {
-    name: "Affiliate",
-    note: "Performance-based commission",
-    includes: "Tracked links, full reporting",
+    name: "Retainer",
+    note: "Ongoing partnership",
+    includes: "Continuous development and support",
   },
 ] as const
 

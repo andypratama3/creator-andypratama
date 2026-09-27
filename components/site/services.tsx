@@ -11,8 +11,8 @@ export function Services() {
       <div className="shell">
         <SectionHeading
           eyebrow="Services"
-          title="Ways we can work together."
-          description="Flexible collaboration formats designed around your goals and budget."
+          title="Technical solutions for your business."
+          description="Comprehensive software development services designed around your requirements and goals."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -39,10 +39,9 @@ export function Services() {
         <Reveal className="mt-16">
           <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
             <div className="plate flex flex-col justify-center rounded-3xl p-7 sm:p-8">
-              <h3 className="text-xl font-semibold tracking-tight">How you pay</h3>
+              <h3 className="text-xl font-semibold tracking-tight">Engagement models</h3>
               <p className="mt-2 text-pretty text-sm leading-relaxed text-ink-muted">
-                Three engagement models. Most brands start with one project and move to a retainer
-                once the first campaign lands.
+                Three flexible ways to work together. Most clients start with a single project and move to ongoing support once the initial delivery is successful.
               </p>
               <ul className="mt-6 space-y-4">
                 {serviceTiers.map((t) => (
@@ -58,7 +57,7 @@ export function Services() {
             </div>
 
             <div className="plate rounded-3xl p-7 sm:p-8">
-              <h3 className="text-xl font-semibold tracking-tight">Every package includes</h3>
+              <h3 className="text-xl font-semibold tracking-tight">Every project includes</h3>
               <ul className="mt-6 grid gap-x-6 gap-y-3 sm:grid-cols-2">
                 {deliverables.map((d) => (
                   <li key={d} className="flex items-center gap-2.5 text-sm text-ink-muted">
@@ -75,11 +74,11 @@ export function Services() {
         <div className="mt-16">
           <Reveal>
             <h3 className="text-center text-balance text-[clamp(1.5rem,3vw,2rem)] font-semibold tracking-tight">
-              Simple, transparent packages
+              Transparent pricing
             </h3>
             <p className="mx-auto mt-3 max-w-md text-pretty text-center text-sm text-ink-muted">
-              Starting rates — placeholder figures. Every real quote is built from your scope,
-              deliverables and usage rights.
+              Starting rates — every real quote is built from your specific requirements,
+              scope, and timeline.
             </p>
           </Reveal>
 

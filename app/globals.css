@@ -18,7 +18,9 @@
   --hairline-strong: oklch(0 0 0 / 0.16);
   --ink: oklch(0.21 0.015 265);
   --ink-muted: oklch(0.5 0.014 265);
-  --ink-subtle: oklch(0.66 0.012 265);
+  /* 0.66 only reached 2.66:1 on --surface-3, below WCAG AA for the 11-12px labels it
+     is used on. 0.52 clears 4.5:1 on every light surface while staying a muted tone. */
+  --ink-subtle: oklch(0.52 0.012 265);
   --brand: oklch(0.55 0.22 288);
   --brand-soft: oklch(0.55 0.22 288 / 0.12);
   --brand-2: oklch(0.66 0.16 210);
@@ -66,7 +68,8 @@
   --hairline-strong: oklch(1 0 0 / 0.16);
   --ink: oklch(0.97 0.004 275);
   --ink-muted: oklch(0.74 0.014 275);
-  --ink-subtle: oklch(0.58 0.016 275);
+  /* 0.58 only reached 3.47:1 on --surface-3. 0.655 clears 4.5:1 on every dark surface. */
+  --ink-subtle: oklch(0.655 0.016 275);
   --brand: oklch(0.72 0.17 288);
   --brand-soft: oklch(0.72 0.17 288 / 0.16);
   --brand-2: oklch(0.78 0.13 205);
@@ -255,19 +258,23 @@
       opacity: 0;
     }
   }
+  /* Base UI exposes the measured panel height as --accordion-panel-height.
+     The old --radix-accordion-content-height name comes from Radix and is never set
+     here, so both keyframes resolved to an invalid height and the panel snapped open
+     instead of animating. */
   @keyframes accordion-down {
     from {
       height: 0;
       opacity: 0;
     }
     to {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
       opacity: 1;
     }
   }
   @keyframes accordion-up {
     from {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
       opacity: 1;
     }
     to {
